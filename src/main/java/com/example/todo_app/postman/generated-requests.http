@@ -1,0 +1,125 @@
+//AuthController
+
+### register
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+> {% client.global.set("auth_token", response.body) %}
+
+
+
+### TodoController
+
+### Get list of tasks
+GET http://localhost:8080/todos
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+> {%
+    client.log("Using token: " + client.global.get("auth_token"))
+%}
+
+
+### Create new task
+POST http://localhost:8080/todos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "Первая задача",
+  "description": "Описание задачи"
+}
+
+### Create one more task
+POST http://localhost:8080/todos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "Вторая задача",
+  "description": "Работаееееет юхууу"
+}
+
+
+### Try to create a task without a title
+POST http://localhost:8080/todos
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "description": "Только описание"
+}
+
+### Try to create a task with an invalid token
+POST http://localhost:8080/todos
+Content-Type: application/json
+Authorization: Bearer invalid_token
+
+{
+  "title": "Тестовая задача",
+  "description": "Описание задачи"
+}
+
+### Get the first created task by ID
+GET http://localhost:8080/todos/1
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+
+### Try to get a non-existent task by ID
+GET http://localhost:8080/todos/99
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+
+
+### Update task
+PUT http://localhost:8080/todos/1
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "title": "Обновлённая задача",
+  "description": "Новое описание",
+  "status": "IN_PROGRESS"
+}
+
+
+### Delete task
+DELETE http://localhost:8080/todos/1
+Authorization: Bearer {{auth_token}}
+
+
+//ProfileController
+### Get a user data
+GET http://localhost:8080/profile
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+
+### Update a user's data
+PUT http://localhost:8080/profile
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "username": "New Name"
+}
+
+

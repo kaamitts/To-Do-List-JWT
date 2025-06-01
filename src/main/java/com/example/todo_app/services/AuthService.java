@@ -26,7 +26,7 @@ public class AuthService {
 
     public UserResponse register(String username, String email, String password) {
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new UserAlreadyExistsException("Пользователь с email " + email + " уже существует");
+            throw new UserAlreadyExistsException("User with email " + email + " already exists");
         }
 
         User user = new User();
@@ -40,10 +40,10 @@ public class AuthService {
 
     public String login(String email, String password) {
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("Пользователь с email " + email + " не найден"));
+                .orElseThrow(() -> new EntityNotFoundException("User with email " + email + " not found"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new AuthenticationException("Неверный пароль");
+            throw new AuthenticationException("Incorrect password");
         }
 
         return jwtUtil.generateToken(user.getEmail());

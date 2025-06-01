@@ -6,13 +6,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class TodoRequest {
-    @NotBlank(message = "Заголовок не может быть пустым")
-    @Size(max = 255, message = "Заголовок не может быть длиннее 255 символов")
+    @NotBlank(message = "The title cannot be empty")
+    @Size(max = 255, message = "The title cannot be longer than 255 characters.")
     private String title;
 
     private String description;
 
-    @NotNull(message = "Статус задачи не может быть пустым")
+    @NotNull(message = "Task status cannot be empty")
     private Status status;
 
     public TodoRequest() {

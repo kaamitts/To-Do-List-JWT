@@ -5,15 +5,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 public class RegisterRequest {
-    @NotBlank(message = "Имя пользователя не может быть пустым")
-    @Size(min = 3, message = "Имя пользователя должно быть не менее 3 символов")
+    @NotBlank(message = "Username cannot be empty")
+    @Size(min = 3, message = "Username must be at least 3 characters long")
     private String username;
 
-    @Email(message = "Email должен быть корректным")
-    @NotBlank(message = "Email не может быть пустым")
+    @Email(message = "Email must be correct")
+    @NotBlank(message = "Email cannot be empty")
     private String email;
 
-    @NotBlank(message = "Пароль не может быть пустым")
+    @NotBlank(message = "Password cannot be empty")
     private String password;
 
     public RegisterRequest() {

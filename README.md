@@ -80,3 +80,6 @@ All API endpoints are tested using Postman. The `postman/generated-requests.http
 
 ## 5. Notes
 - The project is not intended for direct browser access due to its REST API nature.
+
+## 6. About the Development
+This project marks my first experience with the Java + Spring Boot stack. Previously, I worked primarily with Python and Django, where I built several applications. I decided to challenge myself by exploring a new technology stack to expand my skills and gain hands-on experience with Spring Boot, Spring Security, and JWT-based authentication. This todo application was created specifically as a learning exercise and portfolio piece for job interviews, reflecting my ability to adapt and learn new frameworks quickly.

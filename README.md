@@ -11,13 +11,37 @@ A REST API built with Spring Boot for managing todos and user profiles with JWT-
 - **Postman**: Tool for API testing (via `generated-requests.http`).
 - **Java**: Primary programming language.
 
-## 2. How to Run the Project
+## 2. Features and Requirements
+This project meets the following requirements for a REST API with authentication and CRUD functionality:
+
+### 2.1 User Authentication and Registration Module
+- User registration and login functionality (`POST /auth/register`, `POST /auth/login`).
+- Authentication using JWT (JSON Web Tokens).
+- Protection of private routes (e.g., access to `/todos` and `/profile` endpoints only after login).
+- Optional: Support for access/refresh token flow (can be implemented if needed).
+
+### 2.2 Task Management System
+- CRUD operations (Create, Read, Update, Delete) for tasks:
+  - Create: `POST /todos`
+  - Read: `GET /todos`, `GET /todos/{id}`
+  - Update: `PUT /todos/{id}`
+  - Delete: `DELETE /todos/{id}`
+- Each task includes the following fields:
+  - `id`
+  - `title`
+  - `description`
+  - `status`
+  - `createdAt`
+  - `updatedAt`
+- Filtering tasks by status (e.g., `todo`, `in_progress`, `done`) via query parameter: `GET /todos?status=todo`.
+
+## 3. How to Run the Project
 
 ### Requirements
 - Java 17 or higher.
 - Maven.
 - IDE (e.g., IntelliJ IDEA) or command line.
-- Postman: Tool for API testing (via generated-requests.http).
+- Postman: Tool for API testing (via `generated-requests.http`).
 
 ### Steps
 1. **Open the Project**:
@@ -35,15 +59,15 @@ A REST API built with Spring Boot for managing todos and user profiles with JWT-
    - Or in terminal: `mvn spring-boot:run`
 5. **Test the API**:
    - **Note**: This is a REST API without a user interface, so it’s not designed to work directly in a browser.
-   - Use Postman to test the API(via generated-requests.http).
+   - Use Postman to test the API (via `generated-requests.http`).
    - Import the file `postman/generated-requests.http` into Postman.
    - Execute requests in order:
      - `POST /auth/register` — Register a user.
      - `POST /auth/login` — Login to get a JWT token.
      - Use the token for secured endpoints (`/todos`, `/profile`).
-     - Use the env dev.
+     - Use the `dev` environment to  `generated-requests.http`.
 
-## 3. Testing
+## 4. Testing
 All API endpoints are tested using Postman. The `postman/generated-requests.http` file contains a collection of requests for:
 - User registration and login.
 - Todo creation, retrieval, update, and deletion.
@@ -54,5 +78,5 @@ All API endpoints are tested using Postman. The `postman/generated-requests.http
 2. Login: `POST /auth/login` (save the token).
 3. Use the token to access endpoints like `GET /todos` or `GET /profile`.
 
-## 4. Notes
+## 5. Notes
 - The project is not intended for direct browser access due to its REST API nature.
